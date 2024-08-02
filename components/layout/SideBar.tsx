@@ -11,11 +11,14 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { FilePlus, HomeIcon, SquareCheckBig } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { UserRole } from "@prisma/client";
 
 const SideBar = () => {
+  const { data: session } = useSession();
   const pathname = usePathname();
   return (
-    <div className="fixed left-0 top-16 shadow-sm border-r h-full">
+    <div className="fixed hidden sm:block left-0 bg-white top-16 shadow-sm border-r h-full">
       <div className="w-full ">
         <NavigationMenu className="w-full">
           <NavigationMenuList className="flex flex-col w-[200px] px-2 mt-3 space-x-0 space-y-1">
@@ -34,41 +37,50 @@ const SideBar = () => {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            <NavigationMenuItem className="w-full">
-              <Link
-                className="w-full"
-                href={"/article"}
-                legacyBehavior
-                passHref
-              >
-                <NavigationMenuLink
-                  active={pathname === "/article"}
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    "w-full justify-start items-start"
-                  )}
+            {session && (
+              <NavigationMenuItem className="w-full">
+                <Link
+                  className="w-full"
+                  href={"/article"}
+                  legacyBehavior
+                  passHref
                 >
-                  <div className="flex items-center gap-2 justify-center">
-                    <FilePlus className="w-4 h-4" /> Buat Artikel
-                  </div>
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem className="w-full">
-              <Link className="w-full" href={"/a"} legacyBehavior passHref>
-                <NavigationMenuLink
-                  active={pathname === "/a"}
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    "w-full justify-start items-start"
-                  )}
+                  <NavigationMenuLink
+                    active={pathname === "/article"}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "w-full justify-start items-start"
+                    )}
+                  >
+                    <div className="flex items-center gap-2 justify-center">
+                      <FilePlus className="w-4 h-4" /> Buat Artikel
+                    </div>
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
+            {session && session?.user?.role === UserRole.ADMIN && (
+              <NavigationMenuItem className="w-full">
+                <Link
+                  className="w-full"
+                  href={"/approval"}
+                  legacyBehavior
+                  passHref
                 >
-                  <div className="flex items-center gap-2 justify-center">
-                    <SquareCheckBig className="w-4 h-4" /> Approval
-                  </div>
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+                  <NavigationMenuLink
+                    active={pathname === "/approval"}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "w-full justify-start items-start"
+                    )}
+                  >
+                    <div className="flex items-center gap-2 justify-center">
+                      <SquareCheckBig className="w-4 h-4" /> Approval
+                    </div>
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
       </div>

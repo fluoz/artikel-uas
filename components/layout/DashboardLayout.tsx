@@ -6,7 +6,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       <Navbar />
       <SideBar />
-      <div className="max-w-[calc(100% - 200px)] ml-[200px] mt-20 ">
+      <div className="sm:max-w-[calc(100% - 200px)] sm:ml-[200px] mt-20 ">
         <div className="px-3">{children}</div>
       </div>
     </>
