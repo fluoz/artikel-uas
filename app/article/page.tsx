@@ -8,7 +8,10 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/components/ui/form";
 import TextInput from "@/components/form/TextInput";
-import CustomEditor from "@/components/editor/CustomEditor";
+import dynamic from "next/dynamic";
+const CustomEditor = dynamic(() => import("@/components/editor/CustomEditor"), {
+  ssr: false,
+});
 import { Button } from "@/components/ui/button";
 import { useArticle } from "@/hooks/queryHooks/use-article";
 import { useRouter } from "next/navigation";
