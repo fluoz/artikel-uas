@@ -5,7 +5,7 @@ import getSession from "@/lib/getSession";
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
-) {
+): Promise<any> {
   try {
     const id = params.id;
 
@@ -30,7 +30,7 @@ export async function GET(
   }
 }
 
-export async function PATCH(req: Request) {
+export async function PATCH(req: Request): Promise<any> {
   try {
     const currentUser = await getSession();
 

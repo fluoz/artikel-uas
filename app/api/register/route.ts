@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { RegisterSchema } from "@/validations/auth.validation";
 import prisma from "@/lib/prismadb";
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<any> {
   try {
     const body = await request.json();
 

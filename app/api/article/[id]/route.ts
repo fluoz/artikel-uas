@@ -6,7 +6,7 @@ import { UserRole } from "@prisma/client";
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
-) {
+): Promise<any> {
   const url = new URL(req.url);
   const searchParams = new URLSearchParams(url.search);
   const id = params.id;

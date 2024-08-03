@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 import getSession from "@/lib/getSession";
 import { CreateArticleSchema } from "@/validations/article.validation";
-export async function GET(req: Request) {
+export async function GET(req: Request): Promise<any> {
   const url = new URL(req.url);
   const searchParams = new URLSearchParams(url.search);
 
@@ -30,7 +30,7 @@ export async function GET(req: Request) {
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<any> {
   try {
     const currentUser = await getSession();
 
