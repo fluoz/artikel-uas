@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 import getSession from "@/lib/getSession";
 import { CreateArticleSchema } from "@/validations/article.validation";
@@ -30,7 +30,7 @@ export async function GET(req: Request) {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const currentUser = await getSession();
 

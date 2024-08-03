@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 import getSession from "@/lib/getSession";
 
 export async function GET(
-  req: NextRequest,
+  req: Request,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -30,7 +30,7 @@ export async function GET(
   }
 }
 
-export async function PATCH(req: NextRequest) {
+export async function PATCH(req: Request) {
   try {
     const currentUser = await getSession();
 
