@@ -1,7 +1,6 @@
 "use client";
 import { useArticle } from "@/hooks/queryHooks/use-article";
 import React, { useEffect } from "react";
-import "ckeditor5/ckeditor5-content.css";
 import { Button } from "@/components/ui/button";
 import { approveArticle } from "./actions";
 import { useRouter } from "next/navigation";

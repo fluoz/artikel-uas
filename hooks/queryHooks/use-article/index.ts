@@ -19,7 +19,7 @@ export const useArticle = ({
   const { data: articleData, isLoading: articleDataIsLoading } = useQuery<
     ArticleWithUser[]
   >({
-    queryKey: ["article"],
+    queryKey: ["article", published],
     enabled: withFetch,
     queryFn: async () => {
       const response = await axios.get("/api/article", {

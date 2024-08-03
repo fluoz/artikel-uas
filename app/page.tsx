@@ -5,7 +5,9 @@ import { useArticle } from "@/hooks/queryHooks/use-article";
 import Link from "next/link";
 
 export default function Home() {
-  const { articleData, articleDataIsLoading } = useArticle({});
+  const { articleData, articleDataIsLoading } = useArticle({
+    published: true,
+  });
 
   return (
     <DashboardLayout>

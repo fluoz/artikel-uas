@@ -7,7 +7,7 @@ export async function GET(req: Request): Promise<any> {
   const searchParams = new URLSearchParams(url.search);
 
   const published = searchParams.get("published");
-
+  console.log("published", published);
   try {
     const article = await prisma.article.findMany({
       where: {
